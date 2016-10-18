@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.plugin.DahuaVideo" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>DahuaVideoPlugin</name>
+    <js-module name="DahuaVideoPlugin" src="www/DahuaVideoPlugin.js">
+        <clobbers target="cordova.plugins.DahuaVideoPlugin" />
+    </js-module>
+
+  <!--添加android平台-->
+  <platform name="android">
+    <source-file src="src/android/java/plugin/DahuaVideoPlugin.java" target-dir="src/com/sdr/xitang/plugin"/>
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="DahuaVideoPlugin">
+        <param name="android-package" value="com.sdr.xitang.plugin.DahuaVideoPlugin"/>
+      </feature>
+    </config-file>
+
+    <!--权限和Activity-->
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+      <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+      <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    </config-file>
+
+    <!--Activity-->
+    <config-file parent="/manifest/application" target="AndroidManifest.xml">
+        <activity android:name="com.sdr.xitang.DahuaMainActivity" android:theme="@style/Theme.AppCompat.Light.DarkActionBar" android:screenOrientation="portrait" />
+        <activity android:name="com.sdr.xitang.activities.DahuaDeviceListActivity" android:theme="@style/Theme.AppCompat.Light.DarkActionBar" android:screenOrientation="portrait" />
+        <activity android:name="com.sdr.xitang.activities.DahuaControllerActivity" android:theme="@style/Theme.AppCompat.Light.DarkActionBar" android:screenOrientation="portrait" />
+    </config-file>
+
+    <config-file parent="/*" target="res/values/strings.xml">
+      <color name="zhuColor">#5fbdce</color>
+    </config-file>
+
+
+    <!--Jar包-->
+	<source-file src="src/android/libs/gson-2.5.jar" target-dir="libs/"/>
+    <source-file src="src/android/libs/IDpsdkCore.jar" target-dir="libs/"/>
+    <source-file src="src/android/libs/IPlaySDK.jar" target-dir="libs/"/>
+    <framework src="com.android.support:appcompat-v7:23.4.0" />
+	<!--<lib-file src="src/android/libs/android-support-v4.jar" target-dir="libs/"/>-->
+	<!--<lib-file src="src/android/libs/android-support-v7-appcompat.jar" target-dir="libs/"/>-->
+
+    <!--jniLibs-->
+    <source-file src="src/android/jniLibs/armeabi/libaacdec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libadpcmdec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libamrdec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libdhDpsdkCore.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libDpsdkCore.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libgnustl_shared.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libh264dec_ansic.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libh264dec_neon.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libhevcdec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libjniplay.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libmjpegdec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libmp2dec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libmp3dec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libmpeg4dec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/liboggdec.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libplay.so" target-dir="libs/armeabi/"/>
+    <source-file src="src/android/jniLibs/armeabi/libpostproc.so" target-dir="libs/armeabi/"/>
+
+    <!--代码-->
+    <!--activities包下-->
+    <source-file src="src/android/java/activities/DahuaControllerActivity.java" target-dir="src/com/sdr/xitang/activities"/>
+    <source-file src="src/android/java/activities/DahuaDeviceListActivity.java" target-dir="src/com/sdr/xitang/activities"/>
+    <source-file src="src/android/java/DahuaMainActivity.java" target-dir="src/com/sdr/xitang"/>
+    <!--adapter包下-->
+    <source-file src="src/android/java/adapter/CollectAdapter.java" target-dir="src/com/sdr/xitang/adapter"/>
+    <source-file src="src/android/java/adapter/DahuaGridViewAdapter.java" target-dir="src/com/sdr/xitang/adapter"/>
+    <source-file src="src/android/java/adapter/DeviceTreeAdapter.java" target-dir="src/com/sdr/xitang/adapter"/>
+    <!--bean包下-->
+    <source-file src="src/android/java/bean/ChannelInfo.java" target-dir="src/com/sdr/xitang/bean"/>
+    <source-file src="src/android/java/bean/ChannelInfoExt.java" target-dir="src/com/sdr/xitang/bean"/>
+    <source-file src="src/android/java/bean/DeviceInfo.java" target-dir="src/com/sdr/xitang/bean"/>
+    <source-file src="src/android/java/bean/GridViewChannel.java" target-dir="src/com/sdr/xitang/bean"/>
+    <source-file src="src/android/java/bean/NodeBean.java" target-dir="src/com/sdr/xitang/bean"/>
+    <!--tree包下-->
+    <source-file src="src/android/java/tree/bean/Node.java" target-dir="src/com/sdr/xitang/tree/bean"/>
+    <source-file src="src/android/java/tree/bean/TreeHelper.java" target-dir="src/com/sdr/xitang/tree/bean"/>
+    <source-file src="src/android/java/tree/bean/TreeListViewAdapter.java" target-dir="src/com/sdr/xitang/tree/bean"/>
+    <source-file src="src/android/java/tree/bean/TreeNodeId.java" target-dir="src/com/sdr/xitang/tree/bean"/>
+    <source-file src="src/android/java/tree/bean/TreeNodeLabel.java" target-dir="src/com/sdr/xitang/tree/bean"/>
+    <source-file src="src/android/java/tree/bean/TreeNodePid.java" target-dir="src/com/sdr/xitang/tree/bean"/>
+    <!--utils包下-->
+    <source-file src="src/android/java/utils/PrefUtils.java" target-dir="src/com/sdr/xitang/utils"/>
+    <source-file src="src/android/java/utils/Utility.java" target-dir="src/com/sdr/xitang/utils"/>
+    <source-file src="src/android/java/utils/VideoControllerUtils.java" target-dir="src/com/sdr/xitang/utils"/>
+
+
+    <!--资源文件-->
+	<!--anim-->
+	<source-file src="src/android/res/anim/rotate.xml" target-dir="res/anim"/>
+
+    <!--drawable-->
+    <source-file src="src/android/res/drawable/bg_gridview_selected.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/bg_gridview_unselected.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/ic_addcamera_w.png" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/progress_bar.png" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/tree_ec.png" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/tree_ex.png" target-dir="res/drawable"/>
+
+    <!--drawable-hdpi-->
+    <source-file src="src/android/res/drawable-hdpi/arrow_down.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/arrow_down_left.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/arrow_down_right.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/arrow_left.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/arrow_right.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/arrow_up.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/arrow_up_left.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/arrow_up_right.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/clear.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/collect.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/delete_collect.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/history.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/ic_add_zoom.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/ic_middle.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/ic_reduce_zoom.png" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/window1.jpg" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/window4.jpg" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/window9.jpg" target-dir="res/drawable-hdpi"/>
+    <source-file src="src/android/res/drawable-hdpi/window16.jpg" target-dir="res/drawable-hdpi"/>
+	<source-file src="src/android/res/drawable-hdpi/arrow_back_black.png" target-dir="res/drawable-hdpi"/>
+
+    <!--Layout-->
+    <source-file src="src/android/res/layout/activity_dahua_controller.xml" target-dir="res/layout"/>
+    <source-file src="src/android/res/layout/activity_dahua_device_list.xml" target-dir="res/layout"/>
+    <source-file src="src/android/res/layout/activity_dahua_main.xml" target-dir="res/layout"/>
+    <source-file src="src/android/res/layout/dahua_camera_item.xml" target-dir="res/layout"/>
+    <source-file src="src/android/res/layout/dahua_collect_item.xml" target-dir="res/layout"/>
+    <source-file src="src/android/res/layout/device_list_item.xml" target-dir="res/layout"/>
+    <source-file src="src/android/res/layout/dahuavideo_actionbar_custom.xml" target-dir="res/layout"/>
+  </platform>
+</plugin>
